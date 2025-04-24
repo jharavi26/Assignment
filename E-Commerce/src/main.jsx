@@ -7,7 +7,10 @@ import {initializeApp} from "firebase/app";
 import Login from './component/Authentication/Login.jsx';
 import Signup from './component/Authentication/SignUp.jsx';
 import AuthRoute from './component/Authentication/AuthRoute.jsx';
-import Main from './component/product/Main.jsx';
+import { Provider } from 'react-redux';
+import store from './Redux/App/store.js';
+import Cart from './component/product/Cart.jsx';
+import Home from './component/product/Home.jsx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA9NxtSwO7mp8MaSn6RWa5akf_1HzB5Ln4",
@@ -23,16 +26,16 @@ initializeApp(firebaseConfig);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Provider store={store}>
     <Router>
       <Routes>
-        <Route path = "/" element={<AuthRoute><App/></AuthRoute>} />
-        <Route path = "/login" element = {<Login/>}/>
-        <Route path = "/signup" element = {<Signup/>}/>
-        <Route path = "/main" element = {<Main/>}/>
-        <Route path = "*" element = {<Navigate to ="/"/>} />
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/product/:id" element={<Product />} /> */}
+        <Route path="/cart" element={<Cart />}/>
+        {/* <Route path="/success" element={<OrderSuccess />} /> */}
       </Routes>
-
     </Router>
+  </Provider>
    
   </StrictMode>,
 )

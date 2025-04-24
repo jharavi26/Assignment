@@ -1,6 +1,10 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sortByPrice , clearFilters } from '../../Redux/Feature/productsSlice';
 
 const Filter = () => {
+  const dispatch = useDispatch();
+  const productState = useSelector((state) => state.product || {});
 
   return (
     <div className="flex flex-col gap-4 p-4 bg-white rounded-xl shadow-md w-full max-w-sm mx-auto top-3">
@@ -15,13 +19,8 @@ const Filter = () => {
           type="radio"
           name="filtering"
           value="LowToHigh"
-          // checked={productState.sort === 'LowToHigh'}
-          // onChange={() =>
-          //   productDispatch({
-          //     type: 'SORT_BY_PRICE',
-          //     payload: 'LowToHigh',
-          //   })
-          // }
+          checked={productState.sort === 'LowToHigh'}
+          onChange={() => dispatch(sortByPrice('LowToHigh'))}
           className="form-radio text-blue-600"
         />
         Low to High
@@ -31,21 +30,16 @@ const Filter = () => {
         <input
           type="radio"
           name="filtering"
-          // value="HighToLow"
-          // checked={productState.sort === 'HighToLow'}
-          // onChange={() =>
-          //   productDispatch({
-          //     type: 'SORT_BY_PRICE',
-          //     payload: 'HighToLow',
-          //   })
-          // }
-          className="form-radio text-blue-600"
+          value="HighToLow"
+          checked={productState.sort === 'HighToLow'}
+          onChange={() => dispatch(sortByPrice('HighToLow'))}
+          className="form-radio text-blue-600 ml-4"
         />
         High to Low
       </label>
 
       <button
-        // onClick={() => productDispatch({ type: 'CLEAR_FILTERS' })}
+        onClick={() => dispatch(clearFilters())}
         className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition text-sm"
       >
         Clear Filters
