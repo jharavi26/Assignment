@@ -81,6 +81,12 @@ const Home = () => {
           )}
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* <div className="cursor-pointer">
+          <CgProfile size={32} />
+        </div> */}
+>>>>>>> 44b5c809669df2c5afe4ef4724278c13d33c15b1
         <UserProfile/>
       </div>
 

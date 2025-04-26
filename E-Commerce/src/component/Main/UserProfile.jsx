@@ -30,7 +30,11 @@ const UserProfile = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
+<<<<<<< HEAD
       navigate("/");
+=======
+      navigate("/login");
+>>>>>>> 44b5c809669df2c5afe4ef4724278c13d33c15b1
     } catch (error) {
       console.error("Logout failed:", error);
     }
