@@ -1,14 +1,13 @@
 import { useState } from "react";
 import {
-  getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../Firebase/Firebase";
 
 function Login() {
-  const auth = getAuth();
   const navigate = useNavigate();
 
   const [authing, setAuthing] = useState(false);
@@ -22,7 +21,7 @@ function Login() {
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((response) => {
         console.log(response.user.uid);
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -37,7 +36,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response.user.uid);
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -47,83 +46,73 @@ function Login() {
   };
 
   return (
-    <div className="w-full h-screen flex">
-      {/* Left half of the screen - background styling */}
-      <div className="w-1/2 h-full flex flex-col items-center justify-center">
-        {/* Optional Left Content */}
-      </div>
-
-      {/* Right half - login form */}
-      <div className="w-1/2 h-full bg-[#1a1a1a] flex items-center justify-center">
-        <div className="w-[600px] h-[600px] bg-[#1a1a1a] p-10 flex flex-col justify-center rounded-xl shadow-xl">
-          {/* Header */}
-          <div className="w-full flex flex-col mb-10 text-white">
-            <h3 className="text-4xl font-bold mb-2">Login</h3>
-            <p className="text-lg mb-4">
-              Welcome Back! Please enter your details.
-            </p>
-          </div>
-
-          {/* Input fields */}
-          <div className="w-full flex flex-col mb-6">
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full text-white py-2 mb-4 bg-transparent border-b border-gray-500 focus:outline-none focus:border-white"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full text-white py-2 mb-4 bg-transparent border-b border-gray-500 focus:outline-none focus:border-white"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          {/* Login button */}
-          <div className="w-full flex flex-col mb-4">
-            <button
-              className="w-full bg-transparent border border-white text-white my-2 font-semibold rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
-              onClick={signInWithEmail}
-              disabled={authing}
-            >
-              Log In With Email and Password
-            </button>
-          </div>
-
-          {/* Error message */}
-          {error && <div className="text-red-500 mb-4">{error}</div>}
-
-          {/* Divider */}
-          <div className="w-full flex items-center justify-center relative py-4">
-            <div className="w-full h-[1px] bg-gray-500"></div>
-            <p className="text-lg absolute text-gray-500 bg-[#1a1a1a] px-2">OR</p>
-          </div>
-
-          {/* Google login */}
-          <button
-            className="w-full bg-white text-black font-semibold rounded-md p-4 text-center flex items-center justify-center cursor-pointer mt-7"
-            onClick={signInWithGoogle}
-            disabled={authing}
-          >
-            Log In With Google
-          </button>
-
-          {/* Signup link */}
-          <div className="w-full flex items-center justify-center mt-10">
-            <p className="text-sm font-normal text-gray-400">
-              Don't have an account?{" "}
-              <span className="font-semibold text-white cursor-pointer underline">
-                <a href="/signup">Sign Up</a>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen flex items-center justify-center  p-4">
+  <div className="w-full max-w-md bg-gradient-to-br from-[#1f0036] to-[#0f172a] rounded-xl shadow-2xl overflow-hidden p-8 flex flex-col items-center justify-center">
+    
+    {/* Header */}
+    <div className="mb-8 text-center text-white">
+      <h3 className="text-4xl font-bold mb-2">Login</h3>
+      <p className="text-lg text-gray-400">Welcome Back! Please enter your details.</p>
     </div>
-  );
+
+    {/* Inputs */}
+    <div className="flex flex-col gap-4 w-full mb-6">
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full py-3 px-4 rounded-md bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-white"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        className="w-full py-3 px-4 rounded-md bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-white"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+    </div>
+
+    {/* Login button */}
+    <button
+      onClick={signInWithEmail}
+      disabled={authing}
+      className="w-full py-3 mb-4 bg-white text-black font-semibold rounded-md hover:bg-gray-200 transition"
+    >
+      Log In With Email and Password
+    </button>
+
+    {/* Error message */}
+    {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+    {/* Divider */}
+    <div className="flex items-center justify-center my-4 w-full">
+      <div className="border-b border-gray-600 w-full"></div>
+      <span className="px-4 text-gray-400">OR</span>
+      <div className="border-b border-gray-600 w-full"></div>
+    </div>
+
+    {/* Google login */}
+    <button
+      onClick={signInWithGoogle}
+      disabled={authing}
+      className="w-full py-3 bg-gray-100 text-black font-semibold rounded-md hover:bg-gray-300 transition"
+    >
+      Log In With Google
+    </button>
+
+    {/* Signup link */}
+    <div className="mt-8 text-center text-gray-400 text-sm">
+      Don't have an account?{" "}
+      <a href="/signup" className="font-semibold text-white underline hover:text-gray-300">
+        Sign Up
+      </a>
+    </div>
+
+  </div>
+</div>
+  )
 }
+
 
 export default Login;

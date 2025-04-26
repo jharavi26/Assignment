@@ -1,0 +1,18 @@
+// firebase.js or firebaseConfig.js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9NxtSwO7mp8MaSn6RWa5akf_1HzB5Ln4",
+  authDomain: "assignment-b6cc9.firebaseapp.com",
+  projectId: "assignment-b6cc9",
+  storageBucket: "assignment-b6cc9.firebasestorage.app",
+  messagingSenderId: "412035185696",
+  appId: "1:412035185696:web:9d4a32181e22d3e04dd045",
+  measurementId: "G-SFZTTPTXLN"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+export { auth };

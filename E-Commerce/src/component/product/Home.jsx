@@ -47,13 +47,20 @@ const Home = () => {
 
       {/* Cart/Profile Icons */}
       <div className="fixed top-4 right-6 z-50 flex items-center gap-6">
+        {/* Cart Icon */}
         <div className="relative cursor-pointer" onClick={() => setOpen(true)}>
           <FiShoppingCart size={32} />
-          <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-            {cartItems.length}
-          </div>
+          {cartItems.length > 0 && (
+            <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {cartItems.length}
+            </div>
+          )}
         </div>
-        <CgProfile size={32} />
+
+        {/* Profile Icon */}
+        <div className="cursor-pointer">
+          <CgProfile size={32} />
+        </div>
       </div>
 
       {/* Product Listing */}
@@ -66,7 +73,8 @@ const Home = () => {
         </div>
       </div>
 
-      <CartDropdown open={open} />
+      {/* Cart Dropdown */}
+      <CartDropdown open={open} setOpen={setOpen} />
     </div>
   );
 };

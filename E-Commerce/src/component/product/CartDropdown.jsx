@@ -4,9 +4,13 @@ import { removeFromCart } from "../../Redux/Feature/cartSlice";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const CartDropdown = ({ open }) => {
+const CartDropdown = ({ open , setOpen }) => {
   const { items: cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  if(cartItems.length == 0){
+    setOpen(false);
+  }
 
   if (!open) return null;
 
