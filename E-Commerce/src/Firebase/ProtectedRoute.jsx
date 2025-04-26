@@ -1,11 +1,13 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+// src/components/ProtectedRoute.jsx
+import React from 'react';
+import AuthRoute from '../component/Authentication/AuthRoute';
 
-export default function ProtectedRoute({ children }) {
-  const { user } = useAuth();
+const ProtectedRoute = ({ children }) => {
+  return (
+    <AuthRoute>
+      {children}
+    </AuthRoute>
+  );
+};
 
-  if (!user) {
-    return <Navigate to="/"></Navigate>
-  }
-  return children;
-}
+export default ProtectedRoute;
