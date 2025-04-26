@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../Redux/Feature/cartSlice";
 import { MdDelete } from "react-icons/md";
@@ -8,9 +8,11 @@ const CartDropdown = ({ open , setOpen }) => {
   const { items: cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  if(cartItems.length == 0){
-    setOpen(false);
-  }
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      setOpen(false);
+    }
+  }, [cartItems, setOpen]); 
 
   if (!open) return null;
 
