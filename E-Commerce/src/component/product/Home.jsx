@@ -5,6 +5,7 @@ import CartDropdown from "./cartDropDown";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { useSelector } from "react-redux";
+import UserProfile from "../Main/UserProfile";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -80,10 +81,10 @@ const Home = () => {
           )}
         </div>
 
-        {/* Profile Icon */}
-        <div className="cursor-pointer">
+        {/* <div className="cursor-pointer">
           <CgProfile size={32} />
-        </div>
+        </div> */}
+        <UserProfile/>
       </div>
 
       {/* Product Listing */}
