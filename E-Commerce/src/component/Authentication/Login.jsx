@@ -49,8 +49,7 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br p-6 sm:p-4">
        <div className="w-full max-w-md bg-[#0f172a] backdrop-blur-md rounded-xl shadow-2xl p-8 flex flex-col items-center min-h-[300px] sm:min-h-[400px] md:min-h-[500px]">
         
-      
-        {/* Header of the Page  */}
+    
         <div className="mb-8 text-center">
           <h3 className="text-3xl sm:text-4xl font-bold text-white mb-2">Login</h3>
           <p className="text-sm sm:text-lg text-gray-300">
@@ -75,7 +74,6 @@ function Login() {
           />
         </div>
 
-        {/* Login button */}
         <button
           onClick={signInWithEmail}
           disabled={authing}
@@ -84,17 +82,14 @@ function Login() {
           Log In With Email
         </button>
 
-        {/* Error message */}
         {error && <p className="text-red-400 text-sm mb-4">{error}</p>}
 
-        {/* Divider */}
         <div className="flex items-center w-full my-4">
           <div className="flex-grow border-t border-gray-600"></div>
           <span className="mx-2 text-gray-400 text-sm">OR</span>
           <div className="flex-grow border-t border-gray-600"></div>
         </div>
 
-        {/* Google login */}
         <button
           onClick={signInWithGoogle}
           disabled={authing}
@@ -103,7 +98,6 @@ function Login() {
           Log In With Google
         </button>
 
-        {/* Signup link */}
         <div className="mt-8 text-center text-gray-300 text-sm">
           Don't have an account?{" "}
           <Link

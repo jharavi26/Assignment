@@ -1,6 +1,4 @@
-// src/App.jsx
 import { BrowserRouter , Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
 import Login from "./component/Authentication/Login";
 import Signup from "./component/Authentication/SignUp"
 import ProtectedRoute from "./component/Authentication/ProtectedRoute";
@@ -17,12 +15,12 @@ function App() {
       <Route path ="/" element ={<Login/>}/>
       <Route path="/signup" element={<Signup />} />
 
-      {/* Protected Routes */}
       <Route path="/home" element={
         <ProtectedRoute>
           <Home />
         </ProtectedRoute>
       } />
+      
       <Route path="/cart" element={
         <ProtectedRoute>
           <Cart />

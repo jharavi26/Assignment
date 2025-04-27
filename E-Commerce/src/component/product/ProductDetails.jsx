@@ -16,7 +16,7 @@ function ProductDetails() {
       const data = await res.json();
       setProduct(data);
 
-      // fetch same category products
+      // fetch differenet category products
       const relatedRes = await fetch(`https://dummyjson.com/products/category/${data.category}`);
       const relatedData = await relatedRes.json();
       const filteredSuggestions = relatedData.products.filter((item) => item.id !== data.id);
@@ -30,7 +30,6 @@ function ProductDetails() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
-      {/* Product Info */}
       <div className="flex flex-col md:flex-row gap-10 mb-10">
         <img
           src={product.thumbnail}
@@ -51,7 +50,6 @@ function ProductDetails() {
         </div>
       </div>
 
-      {/* Suggestions */}
       <h2 className="text-xl font-bold mb-4">You might also like</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {suggestions.map((item) => (

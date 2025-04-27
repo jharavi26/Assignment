@@ -38,7 +38,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col md:flex-row bg-gray-50 min-h-screen">
-      {/* Filter Sidebar */}
       <div 
         className={`
           ${showFilter ? "block" : "hidden"} 
@@ -60,9 +59,8 @@ const Home = () => {
         />
       </div>
 
-      {/* Cart/Profile Icons */}
+
       <div className="fixed top-4 right-6 z-50 flex items-center gap-6">
-        {/* Mobile Filter Toggle Button */}
         <button 
           onClick={() => setShowFilter(!showFilter)}
           className="md:hidden bg-blue-500 text-white px-3 py-2 rounded-full text-sm"
@@ -70,7 +68,6 @@ const Home = () => {
           {showFilter ? "Close Filters" : "Filters"}
         </button>
 
-        {/* Cart Icon */}
         <div className="relative cursor-pointer" onClick={() => setOpen(true)}>
           <FiShoppingCart size={32} />
           {cartItems.length > 0 && (
@@ -83,7 +80,6 @@ const Home = () => {
         <UserProfile/>
       </div>
 
-      {/* Product Listing */}
       <div className="flex-1 p-6 mt-20 md:mt-6">
         <h1 className="text-2xl font-bold mb-6">All Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -92,8 +88,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-
-      {/* Cart Dropdown */}
+      
       <CartDropdown open={open} setOpen={setOpen} />
     </div>
   );

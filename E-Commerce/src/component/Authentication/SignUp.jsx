@@ -50,13 +50,11 @@ const Signup = () => {
         <div className="min-h-screen flex items-center justify-center  p-4">
             <div className="w-full max-w-md bg-gradient-to-br from-[#1f0036] to-[#0f172a] rounded-xl shadow-2xl overflow-hidden p-8 flex flex-col items-center justify-center">
                 
-                {/* Header */}
                 <div className="mb-8 text-center text-white">
                     <h3 className="text-4xl font-bold mb-2">Sign Up</h3>
                     <p className="text-lg text-gray-400">Welcome! Please enter your information below to begin.</p>
                 </div>
 
-                {/* Inputs */}
                 <div className="flex flex-col gap-4 w-full mb-6">
                     <input
                         type="email"
@@ -81,10 +79,9 @@ const Signup = () => {
                     />
                 </div>
 
-                {/* Error Message */}
+
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
-                {/* Sign Up Button */}
                 <button
                     onClick={signUpWithEmail}
                     disabled={authing}
@@ -93,14 +90,12 @@ const Signup = () => {
                     Sign Up With Email and Password
                 </button>
 
-                {/* Divider */}
                 <div className="flex items-center justify-center my-4 w-full">
                     <div className="border-b border-gray-600 w-full"></div>
                     <span className="px-4 text-gray-400">OR</span>
                     <div className="border-b border-gray-600 w-full"></div>
                 </div>
 
-                {/* Sign Up with Google */}
                 <button
                     onClick={signUpWithGoogle}
                     disabled={authing}
@@ -109,7 +104,6 @@ const Signup = () => {
                     Sign Up With Google
                 </button>
 
-                {/* Login Link */}
                 <div className="mt-8 text-center text-gray-400 text-sm">
                     Already have an account?{" "}
                     <a href="/" className="font-semibold text-white underline hover:text-gray-300">

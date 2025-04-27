@@ -20,9 +20,8 @@ const cartSlice = createSlice({
           quantity: 1,
         });
       }
-    
-      localStorage.setItem("cart", JSON.stringify(state.items));
     },
+    
     
     updateQuantity: (state, action) => {
       const item = state.items.find((i) => i.id === action.payload.id);

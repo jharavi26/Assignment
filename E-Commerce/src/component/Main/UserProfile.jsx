@@ -31,7 +31,6 @@ const UserProfile = () => {
     try {
       await auth.signOut();
       navigate("/");
-      navigate("/login");
 
     } catch (error) {
       console.error("Logout failed:", error);
@@ -47,17 +46,9 @@ const UserProfile = () => {
     setIsProfileVisible(false);
   };
 
-  if (!user) {
-    return (
-      <p className="text-center text-lg text-gray-700 mt-8">
-        Please log in to view your profile.
-      </p>
-    );
-  }
 
   return (
     <div className="relative" onClick={closeProfileDiv}>
-      {/* Profile Icon */}
       <div onClick={toggleProfileVisibility}>
         <CgProfile
           size={32}
@@ -65,7 +56,6 @@ const UserProfile = () => {
         />
       </div>
 
-      {/* Profile Info Div */}
       {isProfileVisible && (
         <div
           className="absolute top-10 left-[-180px] bg-white p-4 rounded-lg shadow-lg border w-[250px] z-20"
