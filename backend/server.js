@@ -15,10 +15,9 @@ app.post("/api/create-checkout-session", async (req, res) => {
             return res.status(400).json({ error: "Products array is required" });
         }
 
-        // Logging the received products for debugging
         console.log("Received products:", products);
 
-        // Ensure qty is provided and default to 1 if missing
+        
         const lineItems = products.map((product) => ({
             price_data: {
                 currency: "inr",
