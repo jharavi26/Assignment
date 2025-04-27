@@ -3,7 +3,6 @@ import Filter from "./Filter";
 import Product from "./Product";
 import CartDropdown from "./cartDropDown";
 import { FiShoppingCart } from "react-icons/fi";
-import { CgProfile } from "react-icons/cg";
 import { useSelector } from "react-redux";
 import UserProfile from "../Main/UserProfile";
 
@@ -81,12 +80,6 @@ const Home = () => {
           )}
         </div>
 
-<<<<<<< HEAD
-=======
-        {/* <div className="cursor-pointer">
-          <CgProfile size={32} />
-        </div> */}
->>>>>>> 44b5c809669df2c5afe4ef4724278c13d33c15b1
         <UserProfile/>
       </div>
 
