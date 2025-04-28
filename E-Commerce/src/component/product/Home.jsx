@@ -13,7 +13,7 @@ const Home = () => {
   const [sort, setSort] = useState("");
   const [priceOrder, setPriceOrder] = useState("");
   const [open, setOpen] = useState(false);
-  const [showFilter, setShowFilter] = useState(false); // NEW for mobile toggle
+  const [showFilter, setShowFilter] = useState(false);
 
   const { items: cartItems } = useSelector((state) => state.cart);
 

@@ -15,10 +15,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
             return res.status(400).json({ error: "Products array is required" });
         }
 
-        // Logging the received products for debugging
         console.log("Received products:", products);
 
-        // Ensure qty is provided and default to 1 if missing
         const lineItems = products.map((product) => ({
             price_data: {
                 currency: "inr",
@@ -26,9 +24,9 @@ app.post("/api/create-checkout-session", async (req, res) => {
                     name: product.category,
                     images: [product.thumbnail],
                 },
-                unit_amount: Math.round(product.price * 100), // price in paise
+                unit_amount: Math.round(product.price * 100), 
             },
-            quantity: product.quantity > 0 ? product.quantity : 1, // Fallback to 1 if qty is missing or invalid
+            quantity: product.quantity > 0 ? product.quantity : 1, 
         }));
 
         const session = await stripe.checkout.sessions.create({
@@ -39,7 +37,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
             cancel_url: "http://localhost:5173/cancel",
         });
 
-        res.json({ id: session.id, url: session.url }); // ✅ include url
+        res.json({ id: session.id, url: session.url }); 
     } catch (error) {
         console.error("Error creating Stripe session:", error);
         res.status(500).json({ error: error.message });
