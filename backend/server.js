@@ -17,6 +17,10 @@ app.post("/api/create-checkout-session", async (req, res) => {
 
         console.log("Received products:", products);
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a3db59d269f84cf3b25e90cb1597e19ee9ab06b5
         const lineItems = products.map((product) => ({
             price_data: {
                 currency: "inr",

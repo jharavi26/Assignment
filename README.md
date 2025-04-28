@@ -11,7 +11,7 @@ Purchases can be finalized through integration with Stripe Payment, and users wi
 **Tech Stack**
 Frontend: React.js, Redux Toolkit
 Authentication: Firebase Authentication (Email/Password, Google, Facebook)
-Payments: Razorpay
+Payments: Stripe
 State Persistence: Redux Toolkit, LocalStorage
 Styling: Tailwind CSS / Material-UI
 Data Source: Mock API 
