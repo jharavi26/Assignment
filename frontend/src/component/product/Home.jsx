@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Filter from "./Filter";
 import Product from "./Product";
-import CartDropdown from "./cartDropDown";
+import CartDropdown from "./CartDropdown";
 import { FiShoppingCart } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import UserProfile from "../Main/UserProfile";
