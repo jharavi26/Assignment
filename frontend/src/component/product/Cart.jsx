@@ -16,18 +16,22 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { items: cartItems } = useSelector((state) => state.cart);
 
+  // Handle quantity increment (add item to cart)
   const handleIncrement = (item) => {
     dispatch(addToCart(item));
   };
 
+  // Handle quantity decrement (remove item from cart)
   const handleDecrement = (id) => {
     dispatch(removeFromCart(id));
   };
 
+  // Empty cart action
   const handleEmptyCart = () => {
     dispatch(clearCart());
   };
 
+  // Recalculate total price and quantity whenever cartItems change
   useEffect(() => {
     const total = cartItems.reduce((acc, item) => {
       const price = Number(item.price) || 0;
@@ -45,31 +49,41 @@ const Cart = () => {
     setTotalQuantity(quantity);
   }, [cartItems]);
 
-  const makePayment = async () => {
-    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-    const body = { products: cartItems };
-    const headers = { "Content-Type": "application/json" };
+  const makePayment = async()=>{
+    const stripe = await loadStripe("pk_test_51R1T3lFPYHVofb34iWSc3hrrWtSjmASXukeXfU7XS0DwuD96OOzPjUb6Ca7WRG5WxXTHuAe0oOHKNmZOU9Ou6k2300BTEtxzYG");
 
-    const response = await fetch("/api/create-checkout-session", {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Server Error:", errorText);
-      return;
+    const body = {
+      products : cartItems
     }
 
-    const session = await response.json();
-    const result = await stripe.redirectToCheckout({ sessionId: session.id });
+    const headers = {
+      "Content-Type":"application/json"
+    }
 
-    if (result.error) {
+    const response = await fetch("http://localhost:7000/api/create-checkout-session",{
+      method:"POST",
+      headers:headers,
+      body:JSON.stringify(body)
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Server Error:", errorText);
+    return;
+}
+
+  const session = await response.json();
+
+  const result = stripe.redirectToCheckout({
+      sessionId:session.id
+  });
+  
+  if(result.error){
       console.log(result.error);
-    }
-  };
+  }
+}  
+
 
   return (
     <div className="flex flex-col items-center px-4 py-8 bg-gray-100 min-h-screen">
@@ -132,12 +146,10 @@ const Cart = () => {
                       <select
                         value={item.quantity}
                         onChange={(e) =>
-                          dispatch(
-                            updateQuantity({
-                              id: item.id,
-                              quantity: Number(e.target.value),
-                            })
-                          )
+                          dispatch(updateQuantity({
+                            id: item.id,
+                            quantity: Number(e.target.value),
+                          }))
                         }
                         className="border rounded px-2 py-1 text-xs sm:text-sm"
                       >
@@ -148,9 +160,7 @@ const Cart = () => {
                         ))}
                       </select>
                     </td>
-                    <td className="p-2 sm:p-3 text-right">
-                      ₹{Math.floor(item.price * item.quantity)}
-                    </td>
+                    <td className="p-2 sm:p-3 text-right">₹{Math.floor(item.price * item.quantity)}</td>
                   </tr>
                 ))}
               </tbody>
