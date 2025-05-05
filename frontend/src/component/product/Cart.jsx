@@ -16,22 +16,20 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { items: cartItems } = useSelector((state) => state.cart);
 
-  // Handle quantity increment (add item to cart)
   const handleIncrement = (item) => {
     dispatch(addToCart(item));
   };
 
-  // Handle quantity decrement (remove item from cart)
+
   const handleDecrement = (id) => {
     dispatch(removeFromCart(id));
   };
 
-  // Empty cart action
   const handleEmptyCart = () => {
     dispatch(clearCart());
   };
 
-  // Recalculate total price and quantity whenever cartItems change
+  
   useEffect(() => {
     const total = cartItems.reduce((acc, item) => {
       const price = Number(item.price) || 0;
@@ -83,7 +81,6 @@ const Cart = () => {
       console.log(result.error);
   }
 }  
-
 
   return (
     <div className="flex flex-col items-center px-4 py-8 bg-gray-100 min-h-screen">

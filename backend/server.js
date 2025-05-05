@@ -24,7 +24,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
                     name: product.category,
                     images: [product.thumbnail],
                 },
-                unit_amount: Math.round(product.price * 100), // Stripe expects amount in paisa
+                unit_amount: Math.round(product.price * 100), 
             },
             quantity: product.quantity > 0 ? product.quantity : 1,
         }));

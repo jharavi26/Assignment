@@ -8,7 +8,7 @@ const AuthRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  //to check user is logged in ot not
+
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
