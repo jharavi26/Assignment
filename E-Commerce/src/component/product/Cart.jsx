@@ -46,12 +46,12 @@ const Cart = () => {
   }, [cartItems]);
 
   const makePayment = async () => {
-    const stripe = await loadStripe("pk_test_51R1T3lFPYHVofb34iWSc3hrrWtSjmASXukeXfU7XS0DwuD96OOzPjUb6Ca7WRG5WxXTHuAe0oOHKNmZOU9Ou6k2300BTEtxzYG");
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
     const body = { products: cartItems };
     const headers = { "Content-Type": "application/json" };
 
-    const response = await fetch("http://localhost:7000/api/create-checkout-session", {
+    const response = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers,
       body: JSON.stringify(body),
@@ -64,7 +64,7 @@ const Cart = () => {
     }
 
     const session = await response.json();
-    const result = stripe.redirectToCheckout({ sessionId: session.id });
+    const result = await stripe.redirectToCheckout({ sessionId: session.id });
 
     if (result.error) {
       console.log(result.error);
