@@ -33,7 +33,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:5173/OrderConfirmation",
+            success_url: "https://purebuy.onrender.com/OrderConfirmation",
             cancel_url: "http://purebuy.onrender.com/cancel",
         });
 
